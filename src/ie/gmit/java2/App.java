@@ -11,22 +11,20 @@ import java.util.Scanner;
 public class App {
 	
 	//variables
-	public static int option=0, fileOrUrl=0, search=0;
+	
+	private int option=0, fileOrUrl=0, search=0;
+	private boolean isFileIsUrl;
+	private Parsearator parse = null;
+	private List<String> list = new ArrayList<String>();
 	
 	//scanner
 	public static Scanner sc = new Scanner(System.in);
-
-	public static void main(String[] args) {
-		
-		System.out.println("---- Text Analyser ----");
-		
+	
+	public App(){
 		menuOne();
-		
-		sc.close();
-
-	}//main
+	}
 			
-	public static void menuOne(){
+	public void menuOne(){
 		//While 
 		while(option != 4){
 			System.out.println("\n1) Parse a File or URL\n2) Search\n3) Print Stats\n4) Exit");
@@ -35,7 +33,6 @@ public class App {
 		switch (option) {
 			case 1:
 				System.out.println("---- File or URL ----");
-				
 				menuTwo();
 				break;
 				
@@ -58,7 +55,7 @@ public class App {
 
 	}//menueOne
 	
-	public static void menuTwo(){
+	public void menuTwo(){
 		String inFile = "";
 		//While 
 		while(fileOrUrl != 3){
@@ -67,84 +64,95 @@ public class App {
 			
 			switch (fileOrUrl) {
 			case 1:
+				//set fileUrlBool to true for file
+				isFileIsUrl = true;
+				
 				System.out.println("--- File ---");
-	
 				//Prompt for file name
 				System.out.print("Please enter name of file:");
 				inFile = sc.next();
 				
-				Parsearator fp = new FileParser(inFile);
-				System.out.println("File Parsed!");
-				
-				//test
-				////////////////////
-//				String search = "book";
-//				System.out.println("Book contains " + search + "? " + fp.contains(search));
-//				System.out.println("The size of the Array is: " + fp.count());
-				////////////////////
-				break;
+				parse = new FileParser(inFile);
+				System.out.println("File Parsed!");				
+				return;
 				
 			case 2:
+				//set fileUrlBool to false for URL
+				isFileIsUrl = false;
+				//Prompt for URL
 				System.out.println("--- URL ---");
-				System.out.print("Please enter name of file:");
+				System.out.print("Please enter URL:");
 				inFile = sc.next();
 				
 				//testing
-				Parsearator url = new URLParser();
-				url.parse(inFile);
+				parse = new URLParser(inFile);
 				
-				 List<String> urlList = new ArrayList <String>();
-				 urlList = url.getList();
+				List<String> urlList = new ArrayList <String>();
+				urlList = parse.getList();
 				 
-				 for (String string : urlList) {
+				for (String string : urlList) {
 					System.out.println(string);
 				}
+				
+				System.out.println("URL Parsed!");
 			
-//				//test
-//				////////////////////
-//				String searchURL = "a";
-//				System.out.println("contains " + searchURL + "? " + up.contains(searchURL));
-//				System.out.println("The size of the Array is: " + up.count());
-//				////////////////////
-				break;
+				return;
 			}//switch
 		}//while
 	}//menuTwo
 	
-	public static void menueThree(){
+	public void menueThree(){
+		//local variables
+		String s;
+		
 		//While 
 		while(search != 4){
-			System.out.println("\n1) Contains\n2) Search\n3) search\n4) Back");
+			System.out.println("\n1) Contains\n2) Count\n3) Count Occurrances\n4) First Index\n5) Last Index\n6) All Indices\n7) Delete String\n8) Delete int\n9) Back");
 			search = sc.nextInt();
 				
 			switch (search) {
 				case 1:
 					System.out.println("---- Contains(String) ----");
 					System.out.print("Enter String: ");
+					s = sc.next();
 					
+					if (parse.contains(s))
+						System.out.println("The array contains string " + s +".");
+					else
+						System.out.println("The array does not comtain string " + s +".");				
 					break;
 				case 2:
 					System.out.println("---- Count() ----");
+					System.out.println("The count is: " + parse.count());
 					break;
 				case 3:
-					System.out.println("---- Count(String) ----");
+					System.out.println("---- Count Occurrences(String) ----");
+					System.out.print("Enter String: ");
+					s = sc.next();
+					System.out.println("String " + s + "occurs " + parse.countOccurrences(s) + "time(s).");
 					break;
 				case 4:
 					System.out.println("---- Get First Index(String) ----");
+					System.out.print("Enter String: ");
+					s = sc.next();
+					System.out.println("First occurrance of String " + s + " is " + parse.getFirstIndex(s));					
 					break;
-				case 4:
+				case 5:
 					System.out.println("---- Get Last Index(String) ----");
+					System.out.print("Enter String: ");
+					s = sc.next();
+					System.out.println("Last occurrance of String " + s + " is " + parse.getLastIndex(s));	
 					break;
-				case 4:
+				case 6:
 					System.out.println("---- Get All Indices ----");
 					break;
-				case 4:
+				case 7:
 					System.out.println("---- Delete(String) ----");
 					break;
-				case 4:
+				case 8:
 					System.out.println("---- Delete(int) ----");
 					break;
-				case 4:
+				case 9:
 					System.out.println("---- Back ----");
 					break;
 			}//switch

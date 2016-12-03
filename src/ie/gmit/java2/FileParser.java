@@ -62,16 +62,11 @@ public class FileParser implements Parsearator {
 //		return this.fileContents;
 	}//end of Parse
 
-		
-	//future shane=====================fix this, update to be like urlparser
 	private void addItem(String s){
    	 String[] words = s.split("\\s+");
    	 fileContents.addAll(Arrays.asList(words));
     }
     
-    /* (non-Javadoc)
-	 * @see ie.gmit.java2.Parsearator#getList()
-	 */
    @Override
 	public List<String> getList(){
    	 List<String> copyList = new ArrayList <String>();
@@ -87,7 +82,7 @@ public class FileParser implements Parsearator {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 //	boolean contains(String s):returns true if s exists in the array.
-//	@Override
+	@Override
 	public boolean contains(String s) {
 		boolean contains = false;
 		if (fileContents.contains(s))
@@ -95,34 +90,32 @@ public class FileParser implements Parsearator {
 		return contains;
 	}
 //	int count():returns the total number of elements in the array.
-//	@Override
+	@Override
 	public int count() {
 		int size = fileContents.size();
 		return size;
 	}
 //	int countOccurrences(String s):returns the number of occurrences of s in the array.
-//	@Override
+	@Override
 	public int countOccurrences(String s) {
 		int occur = Collections.frequency(fileContents,s);
 		return occur;
 	}
 //	int getFirstIndex(String s):returns the index of the 1stoccurrence of s in the array.
-//	@Override
-
+	@Override
 	public int getFirstIndex(String s) {
 		int index = fileContents.indexOf(s);
 		return index;
 	}
 //	int getLastIndex(String s):returns the index of the last occurrence of s in the array.
-//	@Override
-
+	@Override
 	public int getLastIndex(String s) {
 		int index = fileContents.indexOf(s);
 		return index;
 	}
 //	int[]  getAllIndices(String  s):return  an  array  of  the  indices  of  all  occurrences  of  s  in the array.
 //	void delete(String s):deletes all occurrences of s from the array.
-//	@Override
+	@Override
 	public void delete(String s) {
 		while(fileContents.remove(s));
 	}

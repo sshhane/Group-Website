@@ -9,4 +9,16 @@ public interface Parsearator {
 
 	List<String> getList();
 
+	boolean contains(String s);
+
+	int count();
+
+	int getFirstIndex(String s);
+
+	int getLastIndex(String s);
+
+	void delete(String s);
+
+	int countOccurrences(String s);
+		
 }
