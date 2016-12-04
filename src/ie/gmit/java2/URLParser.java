@@ -16,7 +16,6 @@ public class URLParser implements Parsearator {
 		//instance variables
 		private List<String> urlContents = new ArrayList<String>();
 		
-        //parse url to file
         /* (non-Javadoc)
 		 * @see ie.gmit.java2.Parsearator#parse(java.lang.String)
 		 */
@@ -122,19 +121,40 @@ public class URLParser implements Parsearator {
 //    	int getLastIndex(String s):returns the index of the last occurrence of s in the array.
     	@Override
     	public int getLastIndex(String s) {
-    		int index = urlContents.indexOf(s);
+    		int index = urlContents.lastIndexOf(s);
     		return index;
     	}
 //    	int[]  getAllIndices(String  s):return  an  array  of  the  indices  of  all  occurrences  of  s  in the array.
+    	public int[] getAllIndices(String  s) {
+
+    		ArrayList<Integer> indices = new ArrayList<Integer>();
+    		
+    		for (int i = 0; i < urlContents.size(); i++) {
+    		    if (s == urlContents.get(i)) {
+    		        // found value at index i
+    		    	indices.add(i);
+    		    }
+    		}
+    		//test
+    		System.out.println(indices);
+    		
+    	    int[] ind = new int[indices.size()];
+    	    
+    	    for (int i = 0; i < ind.length; i++)
+    	    {
+    	        ind[i] = indices.get(i).intValue();
+    	    }
+    	    return ind;
+    		
+    	}
 //    	void delete(String s):deletes all occurrences of s from the array.
     	@Override
     	public void delete(String s) {
     		while(urlContents.remove(s));
     	}
 //    	void delete(int index): deletes the string at a given index in the array.
-//    	@Override
-
-//    	public void delete(int index) {
-//    		while(urlContents.remove(index));
-//    	}
+    	@Override
+    	public void delete(int index) {
+    		urlContents.remove(index);
+		}
 }

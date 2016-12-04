@@ -20,5 +20,9 @@ public interface Parsearator {
 	void delete(String s);
 
 	int countOccurrences(String s);
+
+	void delete(int index);
+
+	int[] getAllIndices(String s);
 		
 }

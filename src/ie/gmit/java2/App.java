@@ -84,17 +84,17 @@ public class App {
 				System.out.print("Please enter URL:");
 				inFile = sc.next();
 				
-				//testing
 				parse = new URLParser(inFile);
+				System.out.println("URL Parsed!");
 				
+				//testing
 				List<String> urlList = new ArrayList <String>();
 				urlList = parse.getList();
 				 
-				for (String string : urlList) {
-					System.out.println(string);
-				}
-				
-				System.out.println("URL Parsed!");
+//				for (String string : urlList) {
+//					System.out.println(string);
+//				}
+
 			
 				return;
 			}//switch
@@ -104,9 +104,10 @@ public class App {
 	public void menueThree(){
 		//local variables
 		String s;
+		int index;
 		
 		//While 
-		while(search != 4){
+		while(search != 9){
 			System.out.println("\n1) Contains\n2) Count\n3) Count Occurrances\n4) First Index\n5) Last Index\n6) All Indices\n7) Delete String\n8) Delete int\n9) Back");
 			search = sc.nextInt();
 				
@@ -129,7 +130,7 @@ public class App {
 					System.out.println("---- Count Occurrences(String) ----");
 					System.out.print("Enter String: ");
 					s = sc.next();
-					System.out.println("String " + s + "occurs " + parse.countOccurrences(s) + "time(s).");
+					System.out.println("String " + s + " occurs " + parse.countOccurrences(s) + " time(s).");
 					break;
 				case 4:
 					System.out.println("---- Get First Index(String) ----");
@@ -145,12 +146,24 @@ public class App {
 					break;
 				case 6:
 					System.out.println("---- Get All Indices ----");
+					System.out.print("Enter String: ");
+					s = sc.next();
+					
+					System.out.println("All indices of String " + s + " are: " + parse.getAllIndices(s));	
 					break;
 				case 7:
 					System.out.println("---- Delete(String) ----");
+					System.out.print("Enter String: ");
+					s = sc.next();
+					parse.delete(s);
+					System.out.println("All occurrances of String " + s + " have been removed");	
 					break;
 				case 8:
 					System.out.println("---- Delete(int) ----");
+					System.out.print("Enter Index: ");
+					index = sc.nextInt();
+					parse.delete(index);
+					System.out.println("All occurrances of String at " + index + " have been removed");	
 					break;
 				case 9:
 					System.out.println("---- Back ----");
