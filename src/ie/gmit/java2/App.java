@@ -86,15 +86,6 @@ public class App {
 				
 				parse = new URLParser(inFile);
 				System.out.println("URL Parsed!");
-				
-				//testing
-				List<String> urlList = new ArrayList <String>();
-				urlList = parse.getList();
-				 
-//				for (String string : urlList) {
-//					System.out.println(string);
-//				}
-
 			
 				return;
 			}//switch
@@ -118,9 +109,9 @@ public class App {
 					s = sc.next();
 					
 					if (parse.contains(s))
-						System.out.println("The array contains string " + s +".");
+						System.out.println("The array contains string '" + s +"'.");
 					else
-						System.out.println("The array does not comtain string " + s +".");				
+						System.out.println("The array does not comtain string '" + s +"'.");				
 					break;
 				case 2:
 					System.out.println("---- Count() ----");
@@ -130,33 +121,36 @@ public class App {
 					System.out.println("---- Count Occurrences(String) ----");
 					System.out.print("Enter String: ");
 					s = sc.next();
-					System.out.println("String " + s + " occurs " + parse.countOccurrences(s) + " time(s).");
+					System.out.println("String '" + s + "' occurs " + parse.countOccurrences(s) + " time(s).");
 					break;
 				case 4:
 					System.out.println("---- Get First Index(String) ----");
 					System.out.print("Enter String: ");
 					s = sc.next();
-					System.out.println("First occurrance of String " + s + " is " + parse.getFirstIndex(s));					
+					System.out.println("First occurrance of String '" + s + "' is " + parse.getFirstIndex(s));					
 					break;
 				case 5:
 					System.out.println("---- Get Last Index(String) ----");
 					System.out.print("Enter String: ");
 					s = sc.next();
-					System.out.println("Last occurrance of String " + s + " is " + parse.getLastIndex(s));	
+					System.out.println("Last occurrance of String '" + s + "' is " + parse.getLastIndex(s));	
 					break;
-				case 6:
+				case 6:	
 					System.out.println("---- Get All Indices ----");
 					System.out.print("Enter String: ");
 					s = sc.next();
-					
-					System.out.println("All indices of String " + s + " are: " + parse.getAllIndices(s));	
+					int[] indices = parse.getAllIndices(s);
+					System.out.print("All indices of String '" + s + "' are: ");
+					for (int i = 0; i < indices.length; i++)
+						System.out.print(indices[i] + ", ");
+					System.out.println();
 					break;
 				case 7:
 					System.out.println("---- Delete(String) ----");
 					System.out.print("Enter String: ");
 					s = sc.next();
 					parse.delete(s);
-					System.out.println("All occurrances of String " + s + " have been removed");	
+					System.out.println("All occurrances of String '" + s + "' have been removed");	
 					break;
 				case 8:
 					System.out.println("---- Delete(int) ----");

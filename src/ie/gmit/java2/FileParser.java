@@ -113,26 +113,28 @@ public class FileParser implements Parsearator {
 	}
 //	int[]  getAllIndices(String  s):return  an  array  of  the  indices  of  all  occurrences  of  s  in the array.
 	public int[] getAllIndices(String  s) {
-
+		
+		int cnt = 0;
+		
 		ArrayList<Integer> indices = new ArrayList<Integer>();
 		
-		for (int i = 0; i < fileContents.size(); i++) {
-		    if (s == fileContents.get(i)) {
-		        // found value at index i
-		    	indices.add(i);
-		    }
-		}
-		//test
-		System.out.println(indices);
+		for (String el : fileContents) {
 
-	    int[] ind = new int[indices.size()];
-	    
-	    for (int i = 0; i < ind.length; i++)
-	    {
-	        ind[i] = indices.get(i).intValue();
-	    }
+			if (s.equals(el)) {
+		        // found value at index i
+		    	indices.add(cnt);
+		    }
+			cnt++;
+		}
+
+		cnt=0;
+		int[] ind = new int[indices.size()];
+
+		for (int indices1 : indices) {
+	        ind[cnt] = indices1;
+	        cnt++;
+		}
 	    return ind;
-		
 	}
 //	void delete(String s):deletes all occurrences of s from the array.
 	@Override
