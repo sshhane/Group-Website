@@ -16,6 +16,7 @@ public class App {
 	private boolean isFileIsUrl;
 	private Parsearator parse = null;
 	private List<String> list = new ArrayList<String>();
+	private String inFile = "";
 	
 	//scanner
 	public static Scanner sc = new Scanner(System.in);
@@ -43,6 +44,7 @@ public class App {
 				
 			case 3:
 				System.out.println("---- Print Stats ----");
+				menuFour();
 				break;
 				
 			case 4:
@@ -56,7 +58,7 @@ public class App {
 	}//menueOne
 	
 	public void menuTwo(){
-		String inFile = "";
+//		String inFile = "";
 		//While 
 		while(fileOrUrl != 3){
 			System.out.println("\n1) File\n2) URL\n3) Back");
@@ -165,5 +167,20 @@ public class App {
 			}//switch
 		}//while
 	}//menueThree
+	
+	public void menuFour() {
+		//list = parse.getList();
+		
+		//parse.printArray(inFile);
+		
+		//total number of words
+		System.out.println("The total is: " + parse.count());
+		
+		//most common string
+		 System.out.println("The most common string is: " + parse.mostCommon());
+		 
+		 //answer to life, universe & everything
+		 parse.fourtyTwo(inFile);
+	}
 	
 }//App

@@ -4,7 +4,9 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -65,7 +67,6 @@ public class URLParser implements Parsearator {
 			String text = doc.body().text();
 			//System.out.println(text);
 			//String[] words = line.split("\\s+");
-			
 			//call add
 			addItem(text);
         
@@ -158,5 +159,57 @@ public class URLParser implements Parsearator {
     	@Override
     	public void delete(int index) {
     		urlContents.remove(index);
+		}
+
+		/////////////////////////////////////////////////////////////////////////////////////////////////////
+		//Stats
+		/////////////////////////////////////////////////////////////////////////////////////////////////////
+		@Override
+		public void printArray(String inFile) {
+			System.out.println("The contents of " + inFile + " are: ");
+
+			for (String string : urlContents) {
+				System.out.print(string);
+			
+				for (int i=0; i %5 == 4; i++)
+					System.out.println();
+			}
+		}//printArray
+		@Override
+		public String mostCommon() {
+			
+			//instance variables
+			String mostCommon="";
+			
+			Map<String, Integer> most = new HashMap<String, Integer>();
+			
+			
+			//fill map
+			for(String s: urlContents) {
+			  Integer com = most.get(s);
+			  
+			  if(com == null)
+				  com = new Integer(0);
+			  
+			  com++;
+			
+			  most.put(s,com);
+			}
+			  
+			  Map.Entry<String,Integer> mc = null;
+			  
+			  //get most repeated
+			  for(Map.Entry<String, Integer> e: most.entrySet()) {
+			      if(mc == null || mc.getValue() <= e.getValue())
+			    	  mc = e;
+				      mostCommon = mc.getKey();
+			  }
+			
+			return mostCommon;
+		}//most
+		
+		@Override
+		public void fourtyTwo(String inFile) {
+			System.out.println("The answer to life, the universe and everything (according to " + inFile + ")is: " + urlContents.get(42));
 		}
 }

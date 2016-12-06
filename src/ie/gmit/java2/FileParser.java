@@ -130,8 +130,8 @@ public class FileParser implements Parsearator {
 		cnt=0;
 		int[] ind = new int[indices.size()];
 
-		for (int indices1 : indices) {
-	        ind[cnt] = indices1;
+		for (int i : indices) {
+	        ind[cnt] = i;
 	        cnt++;
 		}
 	    return ind;
@@ -147,5 +147,57 @@ public class FileParser implements Parsearator {
 		fileContents.remove(index);
 	}
 	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	//Stats
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	@Override
+	public void printArray(String inFile) {
+		System.out.println("The contents of " + inFile + " are: ");
+
+		for (String string : fileContents) {
+			System.out.print(string);
+		
+			for (int i=0; i %5 == 4; i++)
+				System.out.println();
+		}
+	}//printArray
+	@Override
+	public String mostCommon() {
+		
+		//instance variables
+		String mostCommon="";
+		
+		Map<String, Integer> most = new HashMap<String, Integer>();
+		
+		
+		//fill map
+		for(String s: fileContents) {
+		  Integer com = most.get(s);
+		  
+		  if(com == null)
+			  com = new Integer(0);
+		  
+		  com++;
+		
+		  most.put(s,com);
+		}
+		  
+		  Map.Entry<String,Integer> mc = null;
+		  
+		  //get most repeated
+		  for(Map.Entry<String, Integer> e: most.entrySet()) {
+		      if(mc == null || mc.getValue() <= e.getValue())
+		    	  mc = e;
+			      mostCommon = mc.getKey();
+
+		  }
+		
+		return mostCommon;
+	}//most
+	
+	@Override
+	public void fourtyTwo(String inFile) {
+		System.out.println("The answer to life, the universe and everything (according to " + inFile + ") is: " + fileContents.get(42));
+	}
 }
 

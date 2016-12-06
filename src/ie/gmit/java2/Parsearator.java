@@ -24,5 +24,11 @@ public interface Parsearator {
 	void delete(int index);
 
 	int[] getAllIndices(String s);
+
+	void printArray(String inFile);
+
+	String mostCommon();
+
+	void fourtyTwo(String inFile);
 		
 }
